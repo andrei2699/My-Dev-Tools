@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-	<h2>Base64 Encode</h2>
+	<h2>Base64 Decode</h2>
 
 	<div class="container">
 		<label for="input-text" aria-labelledby="input-text" class="text-box-label">
@@ -43,7 +43,7 @@ const outputText = document.querySelector<HTMLTextAreaElement>("#output-text")!;
 inputText.addEventListener("input", (e) => {
 	const target = e.target as unknown as InputEvent;
 
-	outputText.value = btoa(target.value);
+	outputText.value = atob(target.value);
 });
 </script>
 
