@@ -18,7 +18,7 @@ let navItems: NavBarItem[] = [
 	},
 ];
 
-const pathName = Astro.url.pathname.replace("/", "");
+const pathName = Astro.url.pathname;
 navItems = navItems.map((n) => ({ ...n, active: pathName === n.link }));
 ---
 
