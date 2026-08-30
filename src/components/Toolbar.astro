@@ -1,0 +1,49 @@
+---
+import ThemeSlider from "./ThemeSlider.astro";
+---
+
+<div class="toolbar">
+	<span><a href="/" class="toolbar-title">Dev Tools</a></span>
+	<div class="spacer"></div>
+
+	<ThemeSlider />
+	<a
+		href="https://github.com/andrei2699/my-dev-tools"
+		target="_blank"
+		class="github-link"
+	>
+		<svg class="button-icon" role="presentation" aria-hidden="true">
+			<use href="/icons.svg#github-icon"></use>
+		</svg>
+		GitHub</a
+	>
+</div>
+
+<style>
+.toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem;
+	border: #ccc 1px solid;
+}
+
+.toolbar-title {
+	text-decoration: none;
+	color: var(--color-text);
+	font-size: x-large;
+}
+
+.button-icon {
+	height: 18px;
+	width: 18px;
+}
+
+.github-link {
+	display: flex;
+	align-items: center;
+	gap: 0.125rem;
+	color: var(--color-text);
+}
+</style>
