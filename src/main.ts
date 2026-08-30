@@ -1,7 +1,9 @@
 import "./global-style.css";
 import { setupNavbar } from "./layout/navbar/navbar.ts";
+import { setupToolbar } from "./layout/toolbar/toolbar.ts";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
+<div id="toolbar"></div>
 <div id="navbar"></div>
 
 
@@ -53,6 +55,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 <a href="https://github.com/andrei2699/my-dev-tools" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a>
 `;
 
+setupToolbar(document.querySelector<HTMLDivElement>("#toolbar")!);
 setupNavbar(document.querySelector<HTMLDivElement>("#navbar")!, [
 	{
 		name: "Home",

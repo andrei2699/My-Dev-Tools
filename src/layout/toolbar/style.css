@@ -1,0 +1,13 @@
+﻿.toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	border: #ccc 1px solid;
+}
+
+.toolbar-title {
+	text-decoration: none;
+	color: var(--color-text);
+	font-size: x-large;
+}
