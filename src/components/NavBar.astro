@@ -1,0 +1,60 @@
+﻿---
+interface NavBarItem {
+	name: string;
+	link: string;
+	active: boolean;
+}
+
+let navItems: NavBarItem[] = [
+	{
+		name: "Base64 Encoder",
+		link: "base64-encoder",
+		active: false,
+	},
+	{
+		name: "Base64 Decoder",
+		link: "base64-decoder",
+		active: false,
+	},
+];
+
+const pathName = Astro.url.pathname.replace("/", "");
+navItems = navItems.map((n) => ({ ...n, active: pathName === n.link }));
+---
+
+<nav>
+	<ul>
+		{navItems.map(navItem => (
+                <li><a class={navItem.active ? "active" : null}
+                       href={navItem.link}>{navItem.name}</a></li>))}
+	</ul>
+</nav>
+
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 130px;
+	background-color: var(--color-bg);
+	height: 100%;
+	overflow: auto;
+}
+
+li a {
+	display: block;
+	color: var(--color-text);
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+li a.active {
+	background-color: var(--color-primary);
+	color: var(--color-bg);
+}
+
+li a:hover:not(.active) {
+	background-color: var(--color-bg-hover);
+	color: var(--color-text-hover);
+}
+</style>

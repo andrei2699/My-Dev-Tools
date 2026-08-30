@@ -1,3 +1,28 @@
+---
+import NavBar from "../components/NavBar.astro";
+import Toolbar from "../components/Toolbar.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="icon" href="/favicon.ico">
+		<meta name="viewport" content="width=device-width">
+		<meta name="generator" content={Astro.generator}>
+		<title>Astro</title>
+	</head>
+	<body>
+		<Toolbar />
+		<div style="display: flex; gap: 1rem; width: 100%; height: 100%">
+			<NavBar />
+			<slot />
+			<div id="content" style="width: 100%; height: 100%"></div>
+		</div>
+	</body>
+</html>
+
+<style is:global>
 :root {
 	/* Colors */
 	--color-primary: #4f7cff;
@@ -48,3 +73,4 @@ body {
 .spacer {
 	flex: 1;
 }
+</style>
