@@ -2,7 +2,7 @@
 
 These are just some miscellaneous tools, no server required, everything done in the client
 
-You can find the link [here](https://andrei2699/my-dev-tools/)
+You can find the link [https://andrei2699.github.io/My-Dev-Tools](https://andrei2699.github.io/My-Dev-Tools)
 
 ## 🧞 Commands
 
