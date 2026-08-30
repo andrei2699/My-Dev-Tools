@@ -17,18 +17,22 @@ let navItems: NavBarItem[] = [
 		active: false,
 	},
 ];
-
-const pathName = Astro.url.pathname;
-navItems = navItems.map((n) => ({ ...n, active: pathName === n.link }));
 ---
 
 <nav>
 	<ul>
 		{navItems.map(navItem => (
-                <li><a class={navItem.active ? "active" : null}
-                       href={navItem.link}>{navItem.name}</a></li>))}
+                <li><a id={`a-${navItem.link}`} href={navItem.link}>{navItem.name}</a></li>))}
 	</ul>
 </nav>
+
+<script>
+const pathName = window.location.pathname;
+const a = document.querySelector(`#a-${CSS.escape(pathName)}`);
+
+a?.classList.remove("active");
+a?.classList.add("active");
+</script>
 
 <style>
 ul {
