@@ -1,18 +1,20 @@
 ﻿import "./style.css";
 import { createSlider } from "../components/slider/slider.ts";
-
-const LIGHT_THEME = "light";
-const DARK_THEME = "dark";
-const THEME_LOCAL_STORAGE_KEY = "theme";
+import {
+	getThemeFromLocalStorage,
+	setDarkTheme,
+	toggleDarkTheme,
+} from "./theme.ts";
 
 export function setupToolbar(element: HTMLDivElement) {
 	const theme = getThemeFromLocalStorage();
-	setDarkTheme(theme);
-	const isDarkTheme = theme == DARK_THEME;
+	const isDarkTheme = setDarkTheme(theme);
 
 	element.classList.add("toolbar");
 	element.appendChild(createTitle());
+	element.appendChild(createSpacer());
 	element.appendChild(createSlider(isDarkTheme, toggleDarkTheme));
+	element.appendChild(createGitHubLink());
 }
 
 function createTitle() {
@@ -28,17 +30,22 @@ function createTitle() {
 	return span;
 }
 
-function setDarkTheme(theme: string) {
-	document.documentElement.dataset.theme = theme;
+function createSpacer() {
+	const div = document.createElement("div");
+	div.classList.add("spacer");
+	return div;
 }
 
-function getThemeFromLocalStorage() {
-	return localStorage.getItem(THEME_LOCAL_STORAGE_KEY) ?? LIGHT_THEME;
-}
+function createGitHubLink() {
+	const a = document.createElement("a");
+	a.href = "https://github.com/andrei2699/my-dev-tools";
+	a.target = "_blank";
+	a.classList.add("github-link");
 
-function toggleDarkTheme(shouldEnable: boolean) {
-	const theme = shouldEnable ? DARK_THEME : LIGHT_THEME;
-
-	localStorage.setItem(THEME_LOCAL_STORAGE_KEY, theme);
-	setDarkTheme(theme);
+	a.innerHTML = `
+    <svg class="button-icon" role="presentation" aria-hidden="true">
+        <use href="/icons.svg#github-icon"></use>
+    </svg>
+    GitHub`;
+	return a;
 }
