@@ -1,0 +1,96 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+	<h2>UUID/GUID Generator</h2>
+
+	<label for="type-select">Choose a pet:</label>
+
+	<select name="type" id="type-select">
+		<option value="v7">v7</option>
+		<option value="v6">v6</option>
+		<option value="v5">v5</option>
+		<option value="v4">v4</option>
+		<option value="v3">v3</option>
+		<option value="v1">v1</option>
+	</select>
+
+	<br>
+
+	<p id="output-text"></p>
+
+	<br>
+	<div class="button-container">
+		<button type="button">Generate</button>
+		<button id="copy-to-clipboard" type="button">Copy to Clipboard</button>
+	</div>
+</BaseLayout>
+
+<script>
+import { v1, v3, v4, v5, v6, v7 } from "uuid";
+import type { InputEvent } from "../types/EventTypes.ts";
+
+let uuidType = "v7";
+
+const typeSelect = document.querySelector<HTMLSelectElement>("#type-select")!;
+const outputText =
+	document.querySelector<HTMLParagraphElement>("#output-text")!;
+const generateButton = document.querySelector<HTMLButtonElement>("button")!;
+const copyToClipboardButton =
+	document.querySelector<HTMLButtonElement>("#copy-to-clipboard")!;
+
+typeSelect.addEventListener("change", (e) => {
+	const target = e.target as unknown as InputEvent;
+
+	uuidType = target.value;
+});
+
+generateButton.addEventListener("click", () => {
+	outputText.innerHTML = generate(uuidType);
+});
+
+copyToClipboardButton.addEventListener("click", () => {
+	navigator.clipboard.writeText(outputText.innerHTML);
+});
+
+outputText.innerHTML = generate(uuidType);
+
+function generate(uuidType: string): string {
+	switch (uuidType) {
+		case "v7":
+			return v7();
+		case "v6":
+			return v6();
+		case "v5":
+			return v5("example.com", v5.DNS);
+		case "v4":
+			return v4();
+		case "v3":
+			return v3("example.com", v3.DNS);
+		case "v1":
+			return v1();
+		default:
+			return "";
+	}
+}
+</script>
+
+<style>
+label {
+	font-family: sans-serif;
+	font-size: 1rem;
+	padding-right: 10px;
+}
+
+select {
+	font-size: 0.9rem;
+	padding: 2px 5px;
+}
+
+.button-container {
+	display: flex;
+	gap: 1rem;
+	margin: 1rem 0;
+}
+</style>
